@@ -23,9 +23,6 @@ jobs:
       matrix:
         device:
           # sm8150
-          - mh2lm
-          - nabu
-          - cepheus
           - vayu-huaxing
           - vayu-tianma
 

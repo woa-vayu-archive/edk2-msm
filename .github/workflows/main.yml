@@ -23,24 +23,8 @@ jobs:
       matrix:
         device:
           # sm8150
-          - mh2lm
-          - betalm
-          - nabu
           - vayu-huaxing
           - vayu-tianma
-          - cepheus
-          - hotdog
-          - guacamole
-          # sdm845
-          - beryllium-ebbg
-          - beryllium-tianma
-          - polaris
-          - perseus
-          # sm7325
-          - mona
-          - lisa
-          # msm8998
-          - cheeseburger
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
@@ -50,13 +34,9 @@ jobs:
 
       - name: Install required packages
         run: |
-          sudo dpkg --add-architecture i386 
-          wget -qO - https://dl.winehq.org/wine-builds/winehq.key | sudo apt-key add -
           sudo add-apt-repository ppa:cybermax-dexter/sdl2-backport
-          sudo apt-add-repository "deb https://dl.winehq.org/wine-builds/ubuntu $(lsb_release -cs) main"
           sudo apt-get update
           sudo apt-get -y install build-essential uuid-dev clang llvm iasl nasm gcc-aarch64-linux-gnu abootimg python3-distutils python3-pil python3-git gettext
-          sudo apt-get install --install-recommends winehq-stable
 
       - name: Build an image for ${{ matrix.device }}
         run: |
