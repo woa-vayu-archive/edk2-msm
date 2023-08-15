@@ -38,6 +38,10 @@ jobs:
           sudo apt-get update
           sudo apt-get -y install build-essential uuid-dev clang llvm iasl nasm gcc-aarch64-linux-gnu abootimg python3-distutils python3-pil python3-git gettext
 
+      - name: Disable SimpleInit
+        run: |
+          find ./Platform -type f -exec sed -i.dsc "s/ -DENABLE_SIMPLE_INIT//" {} \;
+
       - name: Build an image for ${{ matrix.device }}
         run: |
           ./build.sh --device ${{ matrix.device }}
